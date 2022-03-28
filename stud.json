@@ -1,0 +1,7 @@
+[
+    { "id":101,"name":"giri","course":"html5","location":"chennai"},
+    { "id":102,"name":"hari","course":"python","location":"nellore"},
+    { "id":103,"name":"ravi","course":"java","location":"tirupathi"},
+    { "id":104,"name":"siva","course":"c++","location":"puttur"}
+]
+ 

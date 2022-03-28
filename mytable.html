@@ -1,0 +1,130 @@
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <title>GFG User Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- INCLUDING JQUERY-->
+    <!-- <script src=
+"https://code.jquery.com/jquery-3.5.1.js"> -->
+    </script>
+  
+    <!-- CSS FOR STYLING THE PAGE -->
+    <!-- <style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+  
+        h1 {
+            text-align: center;
+            color: #006600;
+            font-size: xx-large;
+            font-family: 'Gill Sans', 
+                'Gill Sans MT', ' Calibri', 
+                'Trebuchet MS', 'sans-serif';
+        }
+  
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+        }
+  
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+  
+        td {
+            font-weight: lighter;
+        }
+    </style> -->
+    
+</head>
+  
+<body>
+    <section>
+        <!-- <h1>HIGHRADIUS</h1> -->
+        <form class="d-flex">
+            <input class="form-control me-2" id="myInput" type="search" placeholder="Search stud id" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" onclick="myFunction()">Search</button>
+          </form>
+
+        <!-- TABLE CONSTRUCTION-->
+        <table id='table' class="table table-dark table-striped">
+            <!-- HEADING FORMATION -->
+            <!-- <tr>
+                <th>stuid</th>
+                <th>stuname</th>
+                <th>course</th>
+                
+            </tr> -->
+            <thead>
+                <tr>
+                  <th scope="col">Sl.No</th>
+                  <!-- <th scope="col">Stuid</th> -->
+                  <th scope="col">Stuname</th>
+                  <th scope="col">Course</th>
+                  <th scope="col">location</th>
+                </tr>
+              </thead>
+              </table>
+              
+            <script>
+                function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+                $(document).ready(function () {
+  
+                    // FETCHING DATA FROM JSON FILE
+                    $.getJSON("stud.json", 
+                            function (data) {
+                        var student = '';
+  
+                        // ITERATING THROUGH OBJECTS
+                        $.each(data, function (key, value) {
+  
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            student += '<tr>';
+                            student += '<td>' + 
+                                value.id + '</td>';
+  
+                            student += '<td>' + 
+                                value.name + '</td>';
+  
+                            student += '<td>' + 
+                                value.course + '</td>';
+  
+                             student += '<td>' + 
+                                 value.location + '</td>';
+  
+                            student += '</tr>';
+                        });
+                          
+                        //INSERTING ROWS INTO TABLE 
+                        $('#table').append(student);
+                    });
+                });
+            </script>
